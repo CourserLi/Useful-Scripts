@@ -1,4 +1,4 @@
-# 目前本库含有的脚本：
+# 目前本脚本库含有的脚本：
 
 - ### Diary（写日记）
 
@@ -35,4 +35,4 @@
 5. 在 diary.md 的目录建立 up.bat 和 look.bat，并添加其快捷键，目的是为了运行 python 脚本，记得修改对应的参数，然后可以开始使用啦！
 6. 如果 diary.md 中的内容太多了，那么可以将其存储为 pdf，再清空 diary.md 中的内容，重新开始记录
 
-![Diary](\Picture\Diary.png)
+![Diary](https://s1.ax1x.com/2022/04/24/LhNCfP.png)
