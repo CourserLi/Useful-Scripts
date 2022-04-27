@@ -1,4 +1,4 @@
-# 目前本脚本库含有的脚本：
+# 目前脚本库含有的脚本：
 
 - ### Diary（写日记）
 
@@ -14,25 +14,22 @@
 
 ### 应用场景：
 
-1. 今天在 impromptu.md 记录了日志内容，然后打开终端并输入 up，自动上传日志至 diary.md（impromptu.md 内容自动清空）
-
-2. 今天在 impromptu.md 记录了日志内容，然后过了今天，第二天打开电脑，打开终端并输入 up，自动上传日志至 diary.md（impromptu.md 内容自动清空）
+1. 随时在 impromptu.md 中记录日志内容，然后打开终端并输入 up，自动上传日志至 diary.md（impromptu.md 内容自动清空）
 
 3. 想回顾 diary.md 中的内容时，直接打开终端并输入 look 即可
 
 ### 注意：
 
-1. 日志记录的日期，是当天（或之前天）最后修改 impromptu.md 的日期
+1. 日志记录的时间，是当天（或之前天）最后修改 impromptu.md 的日期
 
-2. 如果当天上传了两次日志，则第二次视为失效（若想修改，则在 diary.md 中修改即可），这是为了确保日志不存在重复的日期
+2. 如果当天上传了多次日志，则从第二次开始，视为追加日志内容
 
 ### 使用指南：
 
 1. 仅适用于 Windows，用 cmd 或 powershell 运行都可以
-2. 需要将 diary.md 所在的目录设置在 Path 中，以便直接运行 bat 命令
-3. 填写 diary.py 中的三个参数
-4. 先测试一下，在 impromptu.md 中输入任意内容，终端输入 up，再取消 diary.py 代码第 56 行的注释，然后再输入任意内容，终端继续输入 up，如果此时出现 `您已经写过了 xxx 的日志，如需修改，请在 diary.md 中修改`，那么说明测试成功（将第 56 行删掉）
-5. 在 diary.md 的目录建立 up.bat 和 look.bat，并添加其快捷键，目的是为了运行 python 脚本，记得修改对应的参数，然后可以开始使用啦！
-6. 如果 diary.md 中的内容太多了，那么可以将其存储为 pdf，再清空 diary.md 中的内容，重新开始记录
+2. 在 diary.md 的目录建立 up.bat 和 look.bat，并添加其快捷键，目的是为了运行 python 脚本，记得修改对应的参数
+3. 需要将 diary.md 所在的目录设置在 Path 中，以便直接运行 bat 命令
+4. 填写 diary.py 中的三个参数，然后可以开始使用啦！
+5. 如果 diary.md 中的内容太多了，那么可以将其存储为 pdf，再清空 diary.md 中的内容，重新开始记录
 
 ![Diary](https://s1.ax1x.com/2022/04/24/LhNCfP.png)

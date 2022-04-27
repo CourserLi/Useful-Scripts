@@ -3,6 +3,7 @@
 
 import datetime
 import os, time
+import re
 
 # 需要填写的三个参数：
 # impromptu.md 的地址
@@ -49,16 +50,6 @@ impromptu_minute = impromptu_time.split()[3][3:5]
 
 
 def impromptu2diary():
-    writeup = impromptu_year + "年" + impromptu_month + "月" + impromptu_day + "日 " + impromptu_week + " " + impromptu_hour + "点" + impromptu_minute + "分"
-    verify = impromptu_year + "年" + impromptu_month + "月" + impromptu_day + "日"
-    with open(diary, "r", encoding='utf-8') as file:
-        tmp = file.readline()
-        # print(tmp) # 刷新文本
-        if (verify in tmp):
-            print("您已经写过了 " + verify + " 的日志，如需修改，请在 diary.md 中修改")
-            return
-    file.close()
-
     up_line = []
     with open(impromptu, "r", encoding='utf-8') as file:
         file.readline()
@@ -76,23 +67,58 @@ def impromptu2diary():
         print("您的日志为空，不能上传哦~")
         return
 
+    while (up_line[0] == "\n"):
+        up_line = up_line[1:]
     while (up_line[-1] == "\n"):
         up_line = up_line[:-1]
 
     with open(impromptu, "w", encoding='utf-8') as file:
-        file.write(good + "：距离本周结束还有 " + str(remind) + " 天【勿删】\n\n")
+        file.write("**" + good + "：距离本周结束还有 " + str(remind) + " 天【勿删】**\n\n")
     file.close()
 
+    writeup = impromptu_year + "年" + impromptu_month + "月" + impromptu_day + "日 " + impromptu_week + " " + impromptu_hour + "点" + impromptu_minute + "分"
+
+    with open(diary, "r", encoding='utf-8') as file:
+        tmp = file.read()
+    file.close()
+    if (tmp == "" or tmp == "\n" or tmp == "\n\n"):
+        with open(diary, "w", encoding='utf-8') as file:
+            file.write("**" + writeup + "【" + good + "】" + "**\n")
+            ans = 0
+            while (ans < len(up_line)):
+                file.write(up_line[ans])
+                ans += 1
+            print("成功上传啦 o(*￣▽￣*)ブ")
+        file.close()
+        return
+
+    impromptu_verify = impromptu_year + "年" + impromptu_month + "月" + impromptu_day + "日"
+    str_verify = "【" + good + "】"
+    for line in open(diary, "r", encoding='utf-8'):
+        if (str_verify in line):
+            diary_verify = line
+    diary_year, diary_month, diary_day = re.findall(r"\d+", diary_verify)[0], re.findall(r"\d+",diary_verify)[1], re.findall(r"\d+", diary_verify)[2]
+    diary_verify = diary_year + "年" + diary_month + "月" + diary_day + "日"
+    if (diary_verify == impromptu_verify):
+        with open(diary, "a+", encoding='utf-8') as file:
+            file.write("\n\n")
+            ans = 0
+            while (ans < len(up_line)):
+                file.write(up_line[ans])
+                ans += 1
+            print("成功追加日志啦 o(*￣▽￣*)o")
+        file.close()
+        return
+
     with open(diary, "a+", encoding='utf-8') as file:
-        file.write("**" + writeup + "【" + good + "】" + "**\n\n")
+        file.write("\n\n\n\n")
+        file.write("**" + writeup + "【" + good + "】" + "**\n")
         ans = 0
         while (ans < len(up_line)):
             file.write(up_line[ans])
             ans += 1
-        file.write("\n\n")
+        print("成功上传啦 o(*￣▽￣*)ブ")
     file.close()
-
-    print("成功上传啦 o(*￣▽￣*)ブ")
 
 
 impromptu2diary()
