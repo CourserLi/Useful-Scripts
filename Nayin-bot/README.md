@@ -1,5 +1,7 @@
 ### 项目：Nayin-bot【第一版】
 
+PS： 出于 Github 的限制不能完整上传资源，因此建议直接在我的[云网盘](https://onedrive-vercel-index-seven-xi.vercel.app/zh-CN/Wechat-bot/)下载
+
 包含以下资源：
 
 - WeChatSetup_3.2.1.121.exe【老版本微信】
